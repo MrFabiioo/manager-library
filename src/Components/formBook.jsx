@@ -1,8 +1,10 @@
-import Image from "next/image";
-
-export default function Home() {
+import { useRef, useEffect } from 'react';
+//import { ValidationSchema } from '@common/ValidationSchema';
+import { addBook } from 'app/services/books.service';
+//import { useRouter } from 'next/router';
+export default function FormBook({ book }) {
   return (
-    <form  >
+    <form >
       <div className="overflow-hidden">
         <div className="px-4 py-5 bg-white sm:p-6">
           <div className="grid grid-cols-6 gap-6">
@@ -11,7 +13,7 @@ export default function Home() {
                 Title
               </label>
               <input
-                defaultValue="{product?.title}"
+                defaultValue={book?.title}
                 type="text"
                 name="title"
                 id="title"
@@ -23,7 +25,7 @@ export default function Home() {
                 Price
               </label>
               <input
-                defaultValue="{product?.price}"
+                defaultValue={book?.price}
                 type="number"
                 name="price"
                 id="price"
@@ -35,7 +37,7 @@ export default function Home() {
                 Category
               </label>
               <select
-                defaultValue="{product?.category}"
+                defaultValue={book?.category}
                 id="category"
                 name="category"
                 autoComplete="category-name"
@@ -54,7 +56,7 @@ export default function Home() {
                 Description
               </label>
               <textarea
-                defaultValue="{product?.description}"
+                defaultValue={book?.description}
                 name="description"
                 id="description"
                 autoComplete="description"
@@ -65,7 +67,7 @@ export default function Home() {
             <div className="col-span-6">
               <div>
                 <label htmlFor="coverFoto" className="block text-sm font-medium text-gray-700">
-                  Cover photo
+                  Imagen
                 </label>
                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                   <div className="space-y-1 text-center">
@@ -83,7 +85,7 @@ export default function Home() {
                         className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                       >
                         <span>Upload a file</span>
-                        <input defaultValue="{product?.images}" id="images" name="images" type="file" className="sr-only" />
+                        <input defaultValue={book?.images} id="images" name="images" type="file" className="sr-only" />
                       </label>
                       <p className="pl-1">or drag and drop</p>
                     </div>
@@ -99,7 +101,7 @@ export default function Home() {
             type="submit"
             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Save
+            Guardar
           </button>
         </div>
       </div>
