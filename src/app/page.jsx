@@ -82,7 +82,7 @@ export default function Home() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
-                            <img className="h-10 w-10 rounded-full" src={book.images[0]} width={100} height={100} alt="" />
+                            <img className="h-10 w-10 rounded-full" src={book.image} width={200} height={200} alt="" />
                           </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">{book.title}</div>
@@ -93,7 +93,7 @@ export default function Home() {
                         <div className="text-sm text-gray-900">{book.category.name}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">${book.price}</span>
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-black-800">{book.author}</span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{book.id}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
