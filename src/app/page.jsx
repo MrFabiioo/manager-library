@@ -7,11 +7,15 @@ import endPoints from "../services/index";
 import axios from "axios";
 import Modal from "../Components/modal";
 import FormBook from 'app/Components/formBook';
+import Alert from 'app/Components/alert';
+import useAlert from '../hooks/useAlert';
+import { deleteBook } from 'app/services/books.service';
 
 
 export default function Home() {
   const [openModal,setOpenModal]= useState(false);
   const [books,setBooks]=useState([]);
+  const { alert, setAlert, toggleAlert } = useAlert();
   
   useEffect(()=>{
     async function getBooks() {
@@ -25,10 +29,26 @@ export default function Home() {
     }
   },[])
   //console.log(endPoints.books.getAllBooks)
+
+  const handleDelete = (id) => {
+    deleteBook(id).then(() => {
+      setAlert({
+        active: true,
+        message: 'Libro Eliminado',
+        type: 'error',
+        autoClose: true,
+      });
+    });
+    setTimeout(() => {
+      window.location.reload();
+    }, 7001);
+    
+  };
   return (
     <>
+    <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>
-        <FormBook></FormBook>
+        <FormBook estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert}></FormBook>
       </Modal>
       <div className="lg:flex lg:items-center lg:justify-between mb-8">
         <div className="flex-1 min-w-0">
@@ -97,17 +117,17 @@ export default function Home() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{book.id}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`/dashboard/edit/${book.id}`} className="text-indigo-600 hover:text-indigo-900">
+                        <Link href={`/edit/${book.id}`} className="text-indigo-600 hover:text-indigo-900">
                           Agregar Reseña
                         </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`/dashboard/edit/${book.id}`} className="text-indigo-600 hover:text-indigo-900">
+                        <Link href={`/edit/${book.id}`} className="text-indigo-600 hover:text-indigo-900">
                           Editar
                         </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <XCircleIcon className="flex-shrink-0 h-6 w-6 text-gray-400 cursor-pointer" aria-hidden="true" />
+                        <XCircleIcon className="flex-shrink-0 h-6 w-6 text-gray-400 cursor-pointer" aria-hidden="true" onClick={() => handleDelete(book?.id)}/>
                       </td>
                     </tr>
                   ))}

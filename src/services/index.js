@@ -6,6 +6,7 @@ const endPoints ={
     books:{
         getAllBooks:`${API}/${VERSION}/books`,
         addBook:`${API}/${VERSION}/books`,
+        deleteBook:(id)=>`${API}/${VERSION}/books/${id}`
     },
 }
 

@@ -1,19 +1,37 @@
 import { useRef, useEffect } from 'react';
-//import { ValidationSchema } from '@common/ValidationSchema';
+import { ValidationSchema } from '../Schema/validationSchema';
 import { addBook } from 'app/services/books.service';
 //import { useRouter } from 'next/router';
 
-export default function FormBook({ book }) {
-  // const formRef = useRef(null);
-  // const handleSubmit = async(event)=>{
-  //   event.preventDefault();
-  //   const formData = new FormData(formRef.current)
-  //   const data ={
-  //     title:
-  //   }
-  // }
+export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
+  const formRef = useRef(null);
+  const handleSubmit = async(event)=>{
+    event.preventDefault();
+    const formData = new FormData(formRef.current)
+    const data ={
+      title: formData.get('title'),
+      author: formData.get('author'),
+      categoryId:formData.get('categoryId'),
+      description:formData.get('description'),
+      image:formData.get('image')
+    };
+    try {
+      const valid = await ValidationSchema.validate(data);
+      //console.log(valid)
+      addBook(data);
+      cambiarEstado(!estado);
+    } catch (error) {
+      setAlert({
+        active: true,
+        message: error.message,
+        type: 'error',
+        autoClose: true,
+      })
+    }
+    
+  }
   return (
-    <form className='w-full'>
+    <form ref={formRef} onSubmit={handleSubmit} className='w-full'>
       <div className="overflow-hidden">
         <div className="px-4 py-5 bg-white sm:p-6 ">
           <div className="grid grid-cols-6 gap-6 ">
@@ -34,10 +52,10 @@ export default function FormBook({ book }) {
                 Autor
               </label>
               <input
-                defaultValue={book?.price}
+                defaultValue={book?.author}
                 type="text"
-                name="price"
-                id="price"
+                name="author"
+                id="author"
                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               />
             </div>
@@ -46,17 +64,18 @@ export default function FormBook({ book }) {
                 Categoria
               </label>
               <select
-                defaultValue={book?.category}
-                id="category"
-                name="category"
+                defaultValue={book?.categoryId}
+                id="categoryId"
+                name="categoryId"
                 autoComplete="category-name"
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
-                <option value="1">bnzi</option>
-                <option value="2">Electronics</option>
-                <option value="3">Change title</option>
-                <option value="4">Shoes</option>
-                <option value="5">Others</option>
+                <option value="1">Novelas de prueba</option>
+                <option value="2">Novelas de prueba 1</option>
+                <option value="3">Novelas de prueba 2</option>
+                <option value="4">Novelas de prueba 3</option>
+                <option value="5">Novelas de prueba 4</option>
+                <option value="6">Novelas de prueba 5</option>
               </select>
             </div>
 
@@ -78,10 +97,10 @@ export default function FormBook({ book }) {
                 Imagen
               </label>
               <textarea
-                defaultValue={book?.description}
-                name="description"
-                id="description"
-                autoComplete="description"
+                defaultValue={book?.image}
+                name="image"
+                id="image"
+                autoComplete="image"
                 rows="3"
                 className="form-textarea mt-1 block w-full mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               />

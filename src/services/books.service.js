@@ -12,4 +12,9 @@ const addBook = async (body)=>{
     return response.data
 }
 
-export{addBook};
+const deleteBook =  async(id)=>{   
+    const response = await axios.delete(endPoints.books.deleteBook(id))
+    return response.data
+};
+
+export{addBook,deleteBook};
