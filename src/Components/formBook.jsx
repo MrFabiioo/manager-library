@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { ValidationSchema } from '../Schema/validationSchema';
-import { addBook } from 'app/services/books.service';
+import { addBook,updateBook } from 'app/services/books.service';
 //import { useRouter } from 'next/router';
 
 export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
@@ -17,9 +17,7 @@ export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
     };
     try {
       const valid = await ValidationSchema.validate(data);
-      //console.log(valid)
-      addBook(data);
-      cambiarEstado(!estado);
+      console.log(valid);
     } catch (error) {
       setAlert({
         active: true,
@@ -28,6 +26,16 @@ export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
         autoClose: true,
       })
     }
+
+    if (book) {
+      console.log(book.id)
+      updateBook(book?.id,data);
+      alert('Libro actualizado');
+    } else {
+      addBook(data);
+      cambiarEstado(!estado);
+    }
+
     
   }
   return (

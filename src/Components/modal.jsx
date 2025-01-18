@@ -3,7 +3,6 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XCircleIcon } from '@heroicons/react/solid';
 
 export default function Modal({estado,cambiarEstado,children}) {
-console.log("aqui estoy modeal")
   return (
     <>
       {estado && 
