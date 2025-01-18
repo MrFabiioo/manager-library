@@ -20,7 +20,26 @@ export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
     };
     try {
       const valid = await ValidationSchema.validate(data);
-      console.log(valid);
+      if (book) {
+        updateBook(book?.id,data);
+        setAlert({
+          active: true,
+          message: `El siguiente libro ah sido hactualizado: `,
+          type: 'error',
+          book:`${book.title}`,
+          autoClose: false,
+        });
+        setTimeout(() => {
+          router.push('/');
+        }, 4000);
+        
+      } else {
+        addBook(data);
+        cambiarEstado(!estado);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);   
+      }
     } catch (error) {
       setAlert({
         active: true,
@@ -28,28 +47,13 @@ export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
         type: 'error',
         autoClose: true,
       })
-    }
-
-    if (book) {
-      console.log(book.id)
-      updateBook(book?.id,data);
-      alert('Libro actualizado');
-      router.push('/');
-      
-    } else {
-      addBook(data);
-      cambiarEstado(!estado);
-    }
-
-    
+    }  
   }
+
   return (
-
-    <>
-    
-
-    <form ref={formRef} onSubmit={handleSubmit} className='w-full'>
-      <div className="overflow-hidden">
+  
+    <form ref={formRef} onSubmit={handleSubmit} className='w-full '>
+      <div className="overflow-hidden rounded-2xl ">
         <div className="px-4 py-5 bg-white sm:p-6 ">
           <div className="grid grid-cols-6 gap-6 ">
             <div className="col-span-6 sm:col-span-6 ">
@@ -135,6 +139,5 @@ export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
         </div>
       </div>
     </form>
-    </>
   );
 }

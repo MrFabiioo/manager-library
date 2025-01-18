@@ -31,24 +31,13 @@ export default function Home() {
   //console.log(endPoints.books.getAllBooks)
 
   const handleDelete = (id) => {
-    deleteBook(id).then(() => {
-      setAlert({
-        active: true,
-        message: 'Libro Eliminado',
-        type: 'error',
-        autoClose: true,
-      });
-    });
-    setTimeout(() => {
-      window.location.reload();
-    }, 7001);
-    
+    deleteBook(id).then(()=>{window.location.reload();})
   };
   return (
     <>
     <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>
-        <FormBook estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert}></FormBook>
+        <FormBook estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormBook>
       </Modal>
       <div className="lg:flex lg:items-center lg:justify-between mb-8">
         <div className="flex-1 min-w-0">
