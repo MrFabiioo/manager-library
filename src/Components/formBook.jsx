@@ -1,10 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { ValidationSchema } from '../Schema/validationSchema';
 import { addBook,updateBook } from 'app/services/books.service';
-//import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import Alert from './alert';
+
 
 export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
   const formRef = useRef(null);
+  const router = useRouter();
   const handleSubmit = async(event)=>{
     event.preventDefault();
     const formData = new FormData(formRef.current)
@@ -31,6 +34,8 @@ export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
       console.log(book.id)
       updateBook(book?.id,data);
       alert('Libro actualizado');
+      router.push('/');
+      
     } else {
       addBook(data);
       cambiarEstado(!estado);
@@ -39,6 +44,10 @@ export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
     
   }
   return (
+
+    <>
+    
+
     <form ref={formRef} onSubmit={handleSubmit} className='w-full'>
       <div className="overflow-hidden">
         <div className="px-4 py-5 bg-white sm:p-6 ">
@@ -126,5 +135,6 @@ export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
         </div>
       </div>
     </form>
+    </>
   );
 }
