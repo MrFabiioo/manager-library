@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Alert from './alert';
 
 
-export default function FormBook({books, book, estado,cambiarEstado, setAlert }) {
+export default function FormBook({categories, book, estado,cambiarEstado, setAlert }) {
   const formRef = useRef(null);
   const router = useRouter();
   const handleSubmit = async(event)=>{
@@ -24,13 +24,13 @@ export default function FormBook({books, book, estado,cambiarEstado, setAlert })
         updateBook(book?.id,data);
         setAlert({
           active: true,
-          message: `El siguiente libro ah sido hactualizado: `,
+          message: `El siguiente libro ah sido actualizado: `,
           type: 'error',
           book:`${book.title}`,
           autoClose: false,
         });
         setTimeout(() => {
-          router.push('/');
+          router.push('/libros');
         }, 4000);
         
       } else {
@@ -91,11 +91,11 @@ export default function FormBook({books, book, estado,cambiarEstado, setAlert })
                 autoComplete="category-name"
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
-                {books?.map((book)=>(
-                  <option key={book.category.id} value={book.category.id}>{book.category.name}</option>
+                {categories?.map((category)=>(
+                  <option key={category.id} value={category.id}>{category.name}</option>
+                  
                 ))}
                 
-
               </select>
             </div>
 

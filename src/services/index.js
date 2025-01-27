@@ -15,6 +15,9 @@ const endPoints ={
         getReview:(id)=>`${API}/${VERSION}/review/${id}`,
 
     },
+    categories:{
+        getAllCategories:`${API}/${VERSION}/category`,
+    }
 }
 
 export default endPoints;

@@ -3,7 +3,7 @@ import { useRef,useState,useEffect } from 'react';
 import endPoints from 'app/services';
 import axios from 'axios';
 
-export default function FormResena({review, idAgregar}){
+export default function FormResena({review}){
   const [books,setBooks]=useState([]);
   useEffect(()=>{
     async function getBooks() {
@@ -58,15 +58,13 @@ export default function FormResena({review, idAgregar}){
                 autoComplete="category-name"
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
-                  {books.length > 0 ? (
+                  {
                     books.map((book) => (
                       <option key={book.id} value={book.id}>
                         {book.title}
                       </option>
                     ))
-                  ) : (
-                    <option value={idAgregar}>{}</option>
-                  )}                    
+                  }                    
               </select>
             </div>
         <div className="relative mb-6">
