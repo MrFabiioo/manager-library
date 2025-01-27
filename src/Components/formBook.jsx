@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Alert from './alert';
 
 
-export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
+export default function FormBook({books, book, estado,cambiarEstado, setAlert }) {
   const formRef = useRef(null);
   const router = useRouter();
   const handleSubmit = async(event)=>{
@@ -91,12 +91,11 @@ export default function FormBook({ book, estado,cambiarEstado, setAlert }) {
                 autoComplete="category-name"
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
-                <option value="1">Novelas de prueba</option>
-                <option value="2">Novelas de prueba 1</option>
-                <option value="3">Novelas de prueba 2</option>
-                <option value="4">Novelas de prueba 3</option>
-                <option value="5">Novelas de prueba 4</option>
-                <option value="6">Novelas de prueba 5</option>
+                {books?.map((book)=>(
+                  <option key={book.category.id} value={book.category.id}>{book.category.name}</option>
+                ))}
+                
+
               </select>
             </div>
 

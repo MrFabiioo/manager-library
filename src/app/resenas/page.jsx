@@ -10,6 +10,7 @@ import FormBook from 'app/Components/formBook';
 import Alert from 'app/Components/alert';
 import useAlert from '../../hooks/useAlert';
 import { deleteBook } from 'app/services/books.service';
+import FormResena from 'app/Components/formResena';
 
 
 export default function Resenas() {
@@ -37,7 +38,7 @@ export default function Resenas() {
     <>
     <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>
-        <FormBook estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormBook>
+        <FormResena estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} />
       </Modal>
       <div className="lg:flex lg:items-center lg:justify-between mb-8">
         <div className="flex-1 min-w-0">

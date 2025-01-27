@@ -12,6 +12,7 @@ import useAlert from '../../hooks/useAlert';
 import { deleteBook } from 'app/services/books.service';
 
 
+
 export default function Libros() {
   const [openModal,setOpenModal]= useState(false);
   const [books,setBooks]=useState([]);
@@ -37,7 +38,7 @@ export default function Libros() {
     <>
     <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>
-        <FormBook estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormBook>
+        <FormBook books={books} estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormBook>
       </Modal>
       <div className="lg:flex lg:items-center lg:justify-between mb-8">
         <div className="flex-1 min-w-0">
@@ -106,7 +107,12 @@ export default function Libros() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{book.id}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`/edit/${book.id}`} className="text-indigo-600 hover:text-indigo-900">
+                        <Link href={`resenas/agregar/`} className="text-indigo-600 hover:text-indigo-900">
+                          Agregar Reseña 
+                        </Link>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <Link href={`libros/edit/${book.id}`} className="text-indigo-600 hover:text-indigo-900">
                           Editar 
                         </Link>
                       </td>
