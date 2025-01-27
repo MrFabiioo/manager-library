@@ -36,7 +36,7 @@ export default function Resenas() {
   };
   return (
     <>
-    <Alert alert={alert} handleClose={toggleAlert} />
+    {/* <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>
         <FormResena estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} />
       </Modal>
@@ -56,7 +56,7 @@ export default function Resenas() {
             </button>
           </span>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

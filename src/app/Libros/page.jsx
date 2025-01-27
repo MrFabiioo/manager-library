@@ -16,6 +16,7 @@ import { deleteBook } from 'app/services/books.service';
 export default function Libros() {
   const [openModal,setOpenModal]= useState(false);
   const [books,setBooks]=useState([]);
+    const [categories,setCategories] = useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
   
   useEffect(()=>{
@@ -29,7 +30,17 @@ export default function Libros() {
       console.error(error);
     }
   },[])
-  //console.log(endPoints.books.getAllBooks)
+  useEffect(()=>{
+    async function getCategories() {
+      const response = await axios.get(endPoints.categories.getAllCategories);
+      setCategories(response.data);
+    }
+    try {
+      getCategories();
+    } catch (error) {
+      console.error(error);
+    }
+  },[])
 
   const handleDelete = (id) => {
     deleteBook(id).then(()=>{window.location.reload();})
@@ -38,7 +49,7 @@ export default function Libros() {
     <>
     <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>
-        <FormBook books={books} estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormBook>
+        <FormBook categories={categories} books={books} estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormBook>
       </Modal>
       <div className="lg:flex lg:items-center lg:justify-between mb-8">
         <div className="flex-1 min-w-0">
