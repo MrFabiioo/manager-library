@@ -3,16 +3,16 @@
 import { CheckIcon,XCircleIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useEffect, useState } from "react";
-import endPoints from "../services/index";
+import endPoints from "../../services/index";
 import axios from "axios";
-import Modal from "../Components/modal";
+import Modal from "../../Components/modal";
 import FormBook from 'app/Components/formBook';
 import Alert from 'app/Components/alert';
-import useAlert from '../hooks/useAlert';
+import useAlert from '../../hooks/useAlert';
 import { deleteBook } from 'app/services/books.service';
 
 
-export default function Home() {
+export default function Libros() {
   const [openModal,setOpenModal]= useState(false);
   const [books,setBooks]=useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
@@ -65,7 +65,7 @@ export default function Home() {
                 <thead className="bg-gray-50">
                   <tr>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Nombre
+                    imagen | nombre 
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Categoria

@@ -1,11 +1,11 @@
 "use client";
-import FormProduct from "../../Components/formBook";
+import FormProduct from "../../../Components/formBook";
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import axios from "axios";
-import endPoints from "../../services/index";
-import useAlert from "../../hooks/useAlert";
-import Alert from "../../Components/alert";
+import endPoints from "../../../services/index";
+import useAlert from "../../../hooks/useAlert";
+import Alert from "../../../Components/alert";
 import Link from 'next/link';
 
 
@@ -19,6 +19,7 @@ export default function Edit() {
   // const router = useRouter();
   // const {id}  = router.query
   // console.log(`este ese el ID: ${id}`)
+  //console.log('ID LIBRO: '+id)
  
   useEffect(() => {
     if (!id) return;
@@ -26,6 +27,7 @@ export default function Edit() {
       try {
         const response = await axios.get(endPoints.books.getBook(id));
         setBook(response.data);
+       // console.log("AQUI ESTOY: "+book)
       } catch (error) {
         console.error(error);
         setAlert({

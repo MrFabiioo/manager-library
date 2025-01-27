@@ -10,6 +10,11 @@ const endPoints ={
         updateBook:(id)=>`${API}/${VERSION}/books/${id}`,
         deleteBook:(id)=>`${API}/${VERSION}/books/${id}`
     },
+    reviews:{
+        getAllReviews:`${API}/${VERSION}/review`,
+        getReview:(id)=>`${API}/${VERSION}/review/${id}`,
+
+    },
 }
 
 export default endPoints;
