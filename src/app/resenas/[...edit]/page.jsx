@@ -46,7 +46,7 @@ export default function Edit() {
       
       <div className="flex justify-center items-center">
         <div className="bg-gray-100 p-6 w-3/4 md:w-1/2 lg:w-2/3 rounded-2xl ">
-           <FormResena review={review} /> 
+           <FormResena  setAlert={setAlert} review={review} /> 
        </div>
     </div>
       

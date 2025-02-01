@@ -13,6 +13,9 @@ const endPoints ={
     reviews:{
         getAllReviews:`${API}/${VERSION}/review`,
         getReview:(id)=>`${API}/${VERSION}/review/${id}`,
+        addReview:`${API}/${VERSION}/review`,
+        updateReview:(id)=>`${API}/${VERSION}/review/${id}`,
+        deleteReview:(id)=>`${API}/${VERSION}/review/${id}`
 
     },
     categories:{

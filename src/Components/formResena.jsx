@@ -1,14 +1,16 @@
 "use client"
+import { ValidationSchemaAddBook } from 'app/Schema/validationSchema';
 import { useRef } from 'react';
-import endPoints from 'app/services';
-import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { addReview,updateReview } from 'app/services/review.service';
 
-export default function FormResena({review}){
+
+export default function FormResena({review, id, setAlert}){
 
   const formRef = useRef(null);
-  
+  const router = useRouter();
   const handleSubmit = async(event)=>{
-    event.prevenDefault();
+    event.preventDefault();
     const formData= new FormData(formRef.current)
     const data ={
       title: formData.get('title'),
@@ -17,8 +19,37 @@ export default function FormResena({review}){
       review: formData.get('review'),
       conclusion: formData.get('conclusion'),
       criticism: formData.get('criticism'),
-      bookId:formData.get('bookId'),
+      bookId:id
     };
+    try {
+      const valid = await ValidationSchemaAddBook.validate(data)
+      if (review) {
+        updateReview(review?.id,data)
+        setAlert({
+          active: true,
+          message: `La siguiente reseña ah sido actualizada: `,
+          type: 'error',
+          book:`${review?.title}`,
+          autoClose: false,
+        });
+        setTimeout(() => {
+          router.push('/resenas');
+        }, 4000);
+      } else {
+        addReview(data);
+        setTimeout(() => {
+          router.push('/libros');
+        }, 2000);  
+
+      }
+    } catch (error) {
+      setAlert({
+        active: true,
+        message: error.message,
+        type: 'error',
+        autoClose: true,
+      })
+    }
   }
       return(
         <form ref={formRef} onSubmit={handleSubmit}>
@@ -114,7 +145,7 @@ export default function FormResena({review}){
          </div>
         </div>
         </div>
-        <button className="w-full h-12 bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 rounded-full shadow-xs text-white text-base font-semibold leading-6">Agregar reseña</button>
+        <button className="w-full h-12 bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 rounded-full shadow-xs text-white text-base font-semibold leading-6">Guardar</button>
         </form>
     );
 };

@@ -2,8 +2,6 @@ import { useRef } from 'react';
 import { ValidationSchema } from '../Schema/validationSchema';
 import { addBook,updateBook } from 'app/services/books.service';
 import { useRouter } from 'next/navigation';
-import Alert from './alert';
-
 
 export default function FormBook({categories, book, estado,cambiarEstado, setAlert }) {
   const formRef = useRef(null);

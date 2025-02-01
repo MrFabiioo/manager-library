@@ -13,23 +13,12 @@ import { deleteBook } from 'app/services/books.service';
 
 
 
-export default function Libros() {
+export default function Categorias() {
   const [openModal,setOpenModal]= useState(false);
-  const [books,setBooks]=useState([]);
+
     const [categories,setCategories] = useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
   
-  useEffect(()=>{
-    async function getBooks() {
-      const response = await axios.get(endPoints.books.getAllBooks);
-      setBooks(response.data);
-    }
-    try {
-      getBooks();
-    } catch (error) {
-      console.error(error);
-    }
-  },[])
   useEffect(()=>{
     async function getCategories() {
       const response = await axios.get(endPoints.categories.getAllCategories);
@@ -49,11 +38,11 @@ export default function Libros() {
     <>
     <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>
-        <FormBook categories={categories} books={books} estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormBook>
+        <FormBook estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormBook>
       </Modal>
       <div className="lg:flex lg:items-center lg:justify-between mb-8">
         <div className="flex-1 min-w-0">
-          <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Lista de Libros</h2>
+          <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Lista de Categorias</h2>
         </div>
         <div className="mt-5 flex lg:mt-0 lg:ml-4">
           <span className="sm:ml-3">
@@ -80,10 +69,10 @@ export default function Libros() {
                     imagen | nombre 
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Categoria
+                      Desccripción
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Autor
+                      Creacion
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Id
@@ -98,37 +87,37 @@ export default function Libros() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {books?.map((book) => (
-                    <tr key={`Product-item-${book.id}`}>
+                  {categories?.map((category) => (
+                    <tr key={`Product-item-${category?.id}`}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
-                            <img className="h-10 w-10 rounded-full" src={book.image} width={200} height={200} alt="" />
+                            <img className="h-10 w-10 rounded-full" src={category?.image} width={200} height={200} alt="" />
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">{book.title}</div>
+                            <div className="text-sm font-medium text-gray-900">{category?.name}</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{book.category.name}</div>
+                        <div className="text-sm text-gray-900">{category?.description}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-black-800">{book.author}</span>
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-black-800">{category.createdAt}</span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{book.id}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{category?.id}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`resenas/agregar/id/${book.id}`} className="text-indigo-600 hover:text-indigo-900">
+                        <Link href={`resenas/agregar/id/${category.id}`} className="text-indigo-600 hover:text-indigo-900">
                           Agregar Reseña 
                         </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`libros/edit/${book.id}`} className="text-indigo-600 hover:text-indigo-900">
+                        <Link href={`libros/edit/${category.id}`} className="text-indigo-600 hover:text-indigo-900">
                           Editar 
                         </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <XCircleIcon className="flex-shrink-0 h-6 w-6 text-gray-400 cursor-pointer" aria-hidden="true" onClick={() => handleDelete(book?.id)}/>
+                        <XCircleIcon className="flex-shrink-0 h-6 w-6 text-gray-400 cursor-pointer" aria-hidden="true" onClick={() => handleDelete(category?.id)}/>
                       </td>
                     </tr>
                   ))}

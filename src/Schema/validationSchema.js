@@ -23,4 +23,24 @@ const ValidationSchema = Yup.object().shape({
     
 });
 
-export { ValidationSchema };
+const ValidationSchemaAddBook = Yup.object().shape({
+  title: Yup.string() //Valida Title
+    .min(2, '!Titulo demasiado corto: minimo 2 letras¡') //Mínimo 2 caráteres
+    .max(100, '!Titulo demasiado largo: maximo 100 letras¡') //Máximo 25 carácteres
+    .required('!El titulo es requerido para la creacion de un nuevo libro¡'),
+  aboutAuthor: Yup.string()
+    .min(2,'! Acerca del Autor Es demasiado corto: minimo 2 letras ¡'),
+  introduction: Yup.string()
+  .min(2,'! Introduccion Es demasiado corto: minimo 2 letras ¡'),
+  review: Yup.string()
+  .min(2,'! Revisado Es demasiado corto: minimo 2 letras ¡'),
+  conclusion:Yup.string()
+  .min(2,'! Conclusión Es demasiado corto: minimo 2 letras ¡'),  
+  criticism: Yup.string()
+  .min(2,'! Cristica Es demasiado corto: minimo 2 letras ¡'),
+  // bookId: Yup.string()
+  // .min(2,'! el ID del libro Es demasiado corto: minimo 1 letra ¡')
+  // .required('Se requiere el  ID de un libro para crear una reseña')
+})
+
+export { ValidationSchema,ValidationSchemaAddBook };
