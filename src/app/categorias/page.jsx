@@ -10,15 +10,15 @@ import FormBook from 'app/Components/formBook';
 import Alert from 'app/Components/alert';
 import useAlert from '../../hooks/useAlert';
 import { deleteBook } from 'app/services/books.service';
+import FormCategory from 'app/Components/formCategoy';
 
 
 
 export default function Categorias() {
-  const [openModal,setOpenModal]= useState(false);
-
+    const [openModal,setOpenModal]= useState(false);
     const [categories,setCategories] = useState([]);
-  const { alert, setAlert, toggleAlert } = useAlert();
-  
+    const { alert, setAlert, toggleAlert } = useAlert();
+
   useEffect(()=>{
     async function getCategories() {
       const response = await axios.get(endPoints.categories.getAllCategories);
@@ -38,7 +38,7 @@ export default function Categorias() {
     <>
     <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>
-        <FormBook estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormBook>
+        <FormCategory estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormCategory>
       </Modal>
       <div className="lg:flex lg:items-center lg:justify-between mb-8">
         <div className="flex-1 min-w-0">
@@ -106,11 +106,6 @@ export default function Categorias() {
                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-black-800">{category.createdAt}</span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{category?.id}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`resenas/agregar/id/${category.id}`} className="text-indigo-600 hover:text-indigo-900">
-                          Agregar Reseña 
-                        </Link>
-                      </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <Link href={`libros/edit/${category.id}`} className="text-indigo-600 hover:text-indigo-900">
                           Editar 

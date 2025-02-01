@@ -36,7 +36,7 @@ export default function Modal({estado,cambiarEstado,children}) {
                     as="h3"
                     className="text-2xl font-bold leading-6 text-gray-900 text-center"
                   >
-                    Formulario de agregar libros
+                    Formulario 
                   </Dialog.Title>
                   <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">{children}</div>
