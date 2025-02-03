@@ -16,10 +16,13 @@ const endPoints ={
         addReview:`${API}/${VERSION}/review`,
         updateReview:(id)=>`${API}/${VERSION}/review/${id}`,
         deleteReview:(id)=>`${API}/${VERSION}/review/${id}`
-
     },
     categories:{
         getAllCategories:`${API}/${VERSION}/category`,
+        getCategory:(id)=>`${API}/${VERSION}/category/${id}`,
+        addCategory:`${API}/${VERSION}/category`,
+        updateCategory:(id)=>`${API}/${VERSION}/category/${id}`,
+        deleteCategory:(id)=>`${API}/${VERSION}/category/${id}`
     }
 }
 

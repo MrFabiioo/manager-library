@@ -1,10 +1,11 @@
+"use client"
 import { useRef } from 'react';
-import { ValidationSchema } from '../Schema/validationSchema';
-import { addBook,updateBook } from 'app/services/books.service';
+import {  validationSchemaCategory } from '../Schema/validationSchema';
+import { addCategory,updateCategory } from 'app/services/categories.service';
 import { useRouter } from 'next/navigation';
-import { Description } from '@headlessui/react';
 
-export default function FormCategory({category}) {
+
+export default function FormCategory({category, setAlert}) {
     const formRef = useRef(null);
     const router = useRouter();
     const handleSubmit = async(event)=>{
@@ -14,7 +15,35 @@ export default function FormCategory({category}) {
             name: formData.get('name'),
             description: formData.get('description'),
             image:formData.get('image')
-        }
+        };
+    try {
+      const valid = await validationSchemaCategory.validate(data)
+      if (category) {
+        updateCategory(category?.id,data);
+        setAlert({
+          active: true,
+          message: `La siguiente categoria ah sido actualizada: `,
+          type: 'error',
+          book:`${category?.name}`,
+          autoClose: false,
+        });
+        setTimeout(() => {
+          router.push('/categorias');
+        }, 4000);
+      } else {
+        addCategory(data);
+        setTimeout(() => {
+       // window.location.reload();
+        }, 2000); 
+      }
+    } catch (error) {
+      setAlert({
+        active: true,
+        message: error.message,
+        type: 'error',
+        autoClose: true,
+      })
+    }
     }
   return (
     <form ref={formRef} onSubmit={handleSubmit} className='w-full '>

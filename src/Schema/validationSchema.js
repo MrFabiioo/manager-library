@@ -41,6 +41,18 @@ const ValidationSchemaAddBook = Yup.object().shape({
   // bookId: Yup.string()
   // .min(2,'! el ID del libro Es demasiado corto: minimo 1 letra ¡')
   // .required('Se requiere el  ID de un libro para crear una reseña')
-})
+});
 
-export { ValidationSchema,ValidationSchemaAddBook };
+const validationSchemaCategory = Yup.object().shape({
+  name:Yup.string()
+  .min(2,'!Nombre demasiado corto: minimo 2 letras¡') //Mínimo 2 caráteres
+  .max(100, '!Nombre demasiado largo: maximo 100 letras¡') //Máximo 25 carácteres
+  .required('!Nombre es requerido para la creacion de una nueva categoria !'),
+  description:Yup.string()
+  .min(2,'! Descripción Es demasiado corto: minimo 2 letras ¡')
+  .max(100, '!Descripción demasiado largo: maximo 100 letras¡'),
+  image: Yup.string()
+  .url('!Debe ser una URL valida ¡') //Es URL
+  .required('Se requiere la URL de una imagen para crear una nueva categoria')
+});
+export { ValidationSchema,ValidationSchemaAddBook ,validationSchemaCategory};

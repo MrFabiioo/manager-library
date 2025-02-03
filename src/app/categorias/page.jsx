@@ -107,7 +107,7 @@ export default function Categorias() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{category?.id}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`libros/edit/${category.id}`} className="text-indigo-600 hover:text-indigo-900">
+                        <Link href={`categorias/edit/${category.id}`} className="text-indigo-600 hover:text-indigo-900">
                           Editar 
                         </Link>
                       </td>
