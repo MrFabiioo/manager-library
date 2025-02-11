@@ -7,6 +7,8 @@ import endPoints from "../../../services/index";
 import useAlert from "../../../hooks/useAlert";
 import Alert from "../../../Components/alert";
 import FormResena from "app/Components/formResena";
+import { useUser } from '@auth0/nextjs-auth0/client';
+import NotAutoriced from "app/Components/notAutoriced";
 
 
 export default function Edit() {
@@ -14,6 +16,7 @@ export default function Edit() {
   const { alert, setAlert, toggleAlert } = useAlert(); // ✅ Agregar useAlert
   const params = useParams(); 
   const id = Array.isArray(params.edit) ? params.edit[1] : params.edit; 
+  const { user, error, isLoading } = useUser();
   //console.log('ID REVIEW: '+id)
 
  
@@ -37,13 +40,11 @@ export default function Edit() {
     }
     getReview();
   }, [id]);
-
+  if (!user) return <NotAutoriced/>
   return (
+    user &&
     <>
       <Alert alert={alert} handleClose={toggleAlert} />
-
-
-      
       <div className="flex justify-center items-center">
         <div className="bg-gray-100 p-6 w-3/4 md:w-1/2 lg:w-2/3 rounded-2xl ">
            <FormResena  setAlert={setAlert} review={review} /> 

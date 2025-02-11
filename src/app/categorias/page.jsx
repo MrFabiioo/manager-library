@@ -9,8 +9,10 @@ import Modal from "../../Components/modal";
 import FormBook from 'app/Components/formBook';
 import Alert from 'app/Components/alert';
 import useAlert from '../../hooks/useAlert';
-import { deleteBook } from 'app/services/books.service';
+import { deleteCategory } from 'app/services/categories.service';
 import FormCategory from 'app/Components/formCategoy';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import NotAutoriced from "app/Components/notAutoriced";
 
 
 
@@ -18,6 +20,7 @@ export default function Categorias() {
     const [openModal,setOpenModal]= useState(false);
     const [categories,setCategories] = useState([]);
     const { alert, setAlert, toggleAlert } = useAlert();
+     const { user, error, isLoading } = useUser();
 
   useEffect(()=>{
     async function getCategories() {
@@ -32,9 +35,11 @@ export default function Categorias() {
   },[])
 
   const handleDelete = (id) => {
-    deleteBook(id).then(()=>{window.location.reload();})
+    deleteCategory(id).then(()=>{window.location.reload();})
   };
+  if (!user) return <NotAutoriced/>
   return (
+    user &&
     <>
     <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>

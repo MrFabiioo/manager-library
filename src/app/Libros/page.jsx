@@ -10,14 +10,17 @@ import FormBook from 'app/Components/formBook';
 import Alert from 'app/Components/alert';
 import useAlert from '../../hooks/useAlert';
 import { deleteBook } from 'app/services/books.service';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import NotAutoriced from 'app/Components/notAutoriced';
 
 
 
-export default function Libros() {
+export default function Libros(){
   const [openModal,setOpenModal]= useState(false);
   const [books,setBooks]=useState([]);
     const [categories,setCategories] = useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
+  const { user, error, isLoading } = useUser();
   
   useEffect(()=>{
     async function getBooks() {
@@ -45,8 +48,13 @@ export default function Libros() {
   const handleDelete = (id) => {
     deleteBook(id).then(()=>{window.location.reload();})
   };
+  if(!user) return <NotAutoriced/>
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
   return (
-    <>
+  
+    user &&(
+      <>
     <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>
         <FormBook categories={categories} books={books} estado={openModal} cambiarEstado={setOpenModal} setAlert={setAlert} ></FormBook>
@@ -137,9 +145,10 @@ export default function Libros() {
             </div>
           </div>
         </div>
-      </div>
-      
-
+      </div> 
     </>
+    )
+    
   );
 }
+

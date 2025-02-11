@@ -11,12 +11,15 @@ import Alert from 'app/Components/alert';
 import useAlert from '../../hooks/useAlert';
 import { deleteReview} from '../../services/review.service'
 import FormResena from 'app/Components/formResena';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import NotAutoriced from "app/Components/notAutoriced";
 
 
 export default function Resenas() {
   const [openModal,setOpenModal]= useState(false);
   const [reviews,setReviews]=useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
+  const { user, error, isLoading } = useUser();
   
   useEffect(()=>{
     async function getReviews() {
@@ -34,7 +37,9 @@ export default function Resenas() {
   const handleDelete = (id) => {
     deleteReview(id).then(()=>{window.location.reload();})
   };
+  if (!user) return <NotAutoriced/>
   return (
+    user &&
     <>
     <Alert alert={alert} handleClose={toggleAlert} />
       <Modal estado={openModal} cambiarEstado={setOpenModal}>

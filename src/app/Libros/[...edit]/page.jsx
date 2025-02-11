@@ -6,7 +6,8 @@ import axios from "axios";
 import endPoints from "../../../services/index";
 import useAlert from "../../../hooks/useAlert";
 import Alert from "../../../Components/alert";
-
+import { useUser } from '@auth0/nextjs-auth0/client';
+import NotAutoriced from "app/Components/notAutoriced";
 
 
 
@@ -15,6 +16,7 @@ export default function Edit() {
   const [book, setBook] = useState({});
   const [categories,setCategories] = useState([]);
   const { alert, setAlert, toggleAlert } = useAlert(); // ✅ Agregar useAlert
+  const { user, error, isLoading } = useUser();
   const params = useParams(); 
   const id = Array.isArray(params.edit) ? params.edit[1] : params.edit; 
 
@@ -50,9 +52,11 @@ export default function Edit() {
     }
     getBook();
   }, [id]);
+  if (!user) return <NotAutoriced/>
 
   return (
-    <>
+    user && (
+      <>
       <Alert alert={alert} handleClose={toggleAlert} />    
       <div className="flex justify-center items-center">
         <div className="bg-gray-700 p-6 w-3/4 md:w-1/2 lg:w-2/3 rounded-2xl ">
@@ -61,5 +65,7 @@ export default function Edit() {
     </div>
       
     </>
+    )
+
   );
 }

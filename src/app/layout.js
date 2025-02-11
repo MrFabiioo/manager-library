@@ -3,6 +3,7 @@ import "./globals.css";
 import Nav from "app/Components/nav";
 import NavBar from "app/Components/navbar";
 import Footer from "app/Components/footer";
+import {UserProvider} from "@auth0/nextjs-auth0/client"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,6 +23,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <>
+    <UserProvider>
     <html className="h-full">
       <body className="h-full">
     <div className="min-h-full">
@@ -34,6 +36,7 @@ export default function RootLayout({ children }) {
     <Footer/>
     </body>
     </html>
+    </UserProvider>
   </>
   );
 }
