@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import endPoints from "../../../services/index";
 import useAlert from "../../../hooks/useAlert";
@@ -15,6 +15,7 @@ export default function Edit() {
   const [review, setReview] = useState({});
   const { alert, setAlert, toggleAlert } = useAlert(); // ✅ Agregar useAlert
   const params = useParams(); 
+  const router = useRouter()
   const id = Array.isArray(params.edit) ? params.edit[1] : params.edit; 
   const { user, error, isLoading } = useUser();
   //console.log('ID REVIEW: '+id)
@@ -40,7 +41,13 @@ export default function Edit() {
     }
     getReview();
   }, [id]);
-  if (!user) return <NotAutoriced/>
+  if (isLoading) {
+    return null
+  }
+  if(!user){
+    router.push('/api/auth/login')
+  }
+
   return (
     user &&
     <>

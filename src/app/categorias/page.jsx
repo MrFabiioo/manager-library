@@ -13,6 +13,7 @@ import { deleteCategory } from 'app/services/categories.service';
 import FormCategory from 'app/Components/formCategoy';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import NotAutoriced from "app/Components/notAutoriced";
+import { useRouter } from 'next/navigation';
 
 
 
@@ -20,7 +21,9 @@ export default function Categorias() {
     const [openModal,setOpenModal]= useState(false);
     const [categories,setCategories] = useState([]);
     const { alert, setAlert, toggleAlert } = useAlert();
-     const { user, error, isLoading } = useUser();
+    const { user, error, isLoading } = useUser();
+    const router =  useRouter()
+
 
   useEffect(()=>{
     async function getCategories() {
@@ -37,7 +40,13 @@ export default function Categorias() {
   const handleDelete = (id) => {
     deleteCategory(id).then(()=>{window.location.reload();})
   };
-  if (!user) return <NotAutoriced/>
+  if (isLoading) {
+    return null
+  }
+  if(!user){
+    router.push('/api/auth/login')
+  }
+
   return (
     user &&
     <>

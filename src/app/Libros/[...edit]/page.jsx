@@ -1,7 +1,7 @@
 "use client";
 import FormProduct from "../../../Components/formBook";
 import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams,useRouter } from "next/navigation";
 import axios from "axios";
 import endPoints from "../../../services/index";
 import useAlert from "../../../hooks/useAlert";
@@ -17,6 +17,7 @@ export default function Edit() {
   const [categories,setCategories] = useState([]);
   const { alert, setAlert, toggleAlert } = useAlert(); // ✅ Agregar useAlert
   const { user, error, isLoading } = useUser();
+  const router = useRouter()
   const params = useParams(); 
   const id = Array.isArray(params.edit) ? params.edit[1] : params.edit; 
 
@@ -52,7 +53,10 @@ export default function Edit() {
     }
     getBook();
   }, [id]);
-  if (!user) return <NotAutoriced/>
+  if(isLoading) return null;
+  if(!user){
+    router.push('/api/auth/login')
+  }
 
   return (
     user && (

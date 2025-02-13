@@ -12,7 +12,7 @@ import useAlert from '../../hooks/useAlert';
 import { deleteReview} from '../../services/review.service'
 import FormResena from 'app/Components/formResena';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import NotAutoriced from "app/Components/notAutoriced";
+import { useRouter } from 'next/navigation';
 
 
 export default function Resenas() {
@@ -20,6 +20,7 @@ export default function Resenas() {
   const [reviews,setReviews]=useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
   const { user, error, isLoading } = useUser();
+  const router = useRouter()
   
   useEffect(()=>{
     async function getReviews() {
@@ -37,7 +38,13 @@ export default function Resenas() {
   const handleDelete = (id) => {
     deleteReview(id).then(()=>{window.location.reload();})
   };
-  if (!user) return <NotAutoriced/>
+  if (isLoading) {
+    return null
+  }
+  if(!user){
+    router.push('/api/auth/login')
+  }
+
   return (
     user &&
     <>

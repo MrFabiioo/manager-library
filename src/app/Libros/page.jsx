@@ -11,6 +11,7 @@ import Alert from 'app/Components/alert';
 import useAlert from '../../hooks/useAlert';
 import { deleteBook } from 'app/services/books.service';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import { useRouter } from 'next/navigation';
 import NotAutoriced from 'app/Components/notAutoriced';
 
 
@@ -18,9 +19,10 @@ import NotAutoriced from 'app/Components/notAutoriced';
 export default function Libros(){
   const [openModal,setOpenModal]= useState(false);
   const [books,setBooks]=useState([]);
-    const [categories,setCategories] = useState([]);
+  const [categories,setCategories] = useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
   const { user, error, isLoading } = useUser();
+  const router = useRouter();
   
   useEffect(()=>{
     async function getBooks() {
@@ -48,8 +50,13 @@ export default function Libros(){
   const handleDelete = (id) => {
     deleteBook(id).then(()=>{window.location.reload();})
   };
-  if(!user) return <NotAutoriced/>
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return null
+  }
+  if(!user){
+    router.push('/api/auth/login')
+  }
+  
   if (error) return <div>{error.message}</div>;
   return (
   

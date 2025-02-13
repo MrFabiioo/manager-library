@@ -1,6 +1,6 @@
 "use client"
 import FormCategory from "app/Components/formCategoy";
-import { useParams } from "next/navigation";
+import { useParams,useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import endPoints from "app/services";
 import axios from "axios";
@@ -12,6 +12,7 @@ import NotAutoriced from "app/Components/notAutoriced";
 export default function Edit(){
     const { alert, setAlert, toggleAlert } = useAlert(); // ✅ Agregar useAlert
     const [category,setCategory] = useState([])
+    const router = useRouter()
     const params = useParams(); 
     const id = Array.isArray(params.edit) ? params.edit[1] : params.edit; 
     const { user, error, isLoading } = useUser();
@@ -35,7 +36,13 @@ export default function Edit(){
         }
         getCategory();
       }, [id]);
-      if (!user) return <NotAutoriced/>
+      if (isLoading) {
+        return null
+      }
+      if(!user){
+        router.push('/api/auth/login')
+      }
+
     return(
       user &&
             <>

@@ -1,14 +1,27 @@
 "use client"
 import { useState } from "react";
-//import { useUser } from '@auth0/nextjs-auth0/client';
+import { useUser } from '@auth0/nextjs-auth0/client';
 //import NotAutoriced from "./notAutoriced";
 
 export default function NavBar(){
     const [open,setOpen]= useState(false);
-   // const { user, error, isLoading } = useUser();
+   const { user, error, isLoading } = useUser();
    // if (!user) return <NotAutoriced/>
    // if (isLoading) return <div>Loading...</div>;
     //if (error) return <div>{error.message}</div>;
+    let fotito="";
+    let loguito=""
+    if (isLoading) {
+      return null
+    }
+    if(user){
+      fotito= user.picture
+      loguito="https://media.istockphoto.com/id/854608904/es/vector/estantes.jpg?s=612x612&w=0&k=20&c=fyPWN6Vz-fyB-94kSbXYJg9utk1nYrEvo86gMmjqqLI="
+    }else{
+      fotito="https://avatar.iran.liara.run/public/1";
+      loguito="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFGcgU5WdSMrj74djVjLTN6ML44iD1ujeG5g&s"
+    }
+
     return(
      
         <>
@@ -32,7 +45,7 @@ export default function NavBar(){
       </div>
       <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div className="flex shrink-0 items-center">
-          <img className="h-8 w-auto" src="https://png.pngtree.com/thumb_back/fw800/background/20230411/pngtree-old-books-on-dark-background-diversity-library-photo-image_51391726.jpg" alt="Your Company"/>
+          <img className="h-8 w-auto" src={loguito} alt="Your Company"/>
         </div>
         <div className="hidden sm:ml-6 sm:block">
           <div className="flex space-x-4">
@@ -60,7 +73,7 @@ export default function NavBar(){
             <button type="button" className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
               <span className="absolute -inset-1.5"></span>
               <span className="sr-only">Open user menu</span>
-              <img className="size-8 rounded-full" src="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.6435-1/52706482_10213238962917718_9201264285404102656_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=e99d92&_nc_ohc=9zMP1yFUKKEQ7kNvgFSxqvu&_nc_oc=AdiWIHgO8nkJUSmw1XOvWFBnPwewM5udxk0vdXIlQvv2zxhm0n-HLDk5NLBnNPFigo5GE2HckTtoLtvFYgM9eoUl&_nc_zt=24&_nc_ht=scontent.feoh1-1.fna&_nc_gid=A-HKSbJLieckhP7AE_k4EnI&oh=00_AYD_y40NlrckUqQKuCJwKLb3V1F1fCEXqf3a_2psVKU1lQ&oe=67D2F21B" alt=""/>
+              <img className="size-8 rounded-full" src={fotito} alt=""/>
             </button>
           </div>
 
