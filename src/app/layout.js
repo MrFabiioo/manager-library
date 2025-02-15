@@ -1,9 +1,12 @@
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "app/Components/nav";
 import NavBar from "app/Components/navbar";
 import Footer from "app/Components/footer";
 import {UserProvider} from "@auth0/nextjs-auth0/client"
+import CondicionalNavBar from "app/Components/condicionalNavBar";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,21 +25,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <>
     <UserProvider>
-    <html className="h-full">
-      <body className="h-full">
-    <div className="min-h-full">
-      <NavBar/>
-      <Nav />
-      <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6">{children}</div>
-      </main>
-    </div>
-    <Footer/>
-    </body>
-    </html>
+      <html className="h-full">
+        <body className="h-full">
+          <CondicionalNavBar>
+            <main>
+              <div className="max-w-7xl mx-auto py-6 sm:px-6">{children}</div>
+            </main>
+          </CondicionalNavBar>
+          <Footer />
+        </body>
+      </html>
     </UserProvider>
-  </>
   );
 }

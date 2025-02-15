@@ -25,7 +25,7 @@ export default function NavBar(){
     return(
      
         <>
-        <nav className="bg-gray-800">
+        <nav className="bg-gray-800 z-50">
   <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div className="relative flex h-16 items-center justify-between">
       <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -50,7 +50,7 @@ export default function NavBar(){
         <div className="hidden sm:ml-6 sm:block">
           <div className="flex space-x-4">
             
-            <a href="/" className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
+            <a href="/dashboard" className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
             <a href="/libros" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Libros</a>
             <a href="/resenas" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Reseñas</a>
             <a href="/categorias" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Categorias</a>
