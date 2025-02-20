@@ -11,7 +11,7 @@ const ValidationSchema = Yup.object().shape({
     .required('! Nombre del autor es requerido !¡'), //Requerido
   description: Yup.string() //Valida la descripción
     .min(6, '!Descripcion demasiado corta: Mínimo 6 carácteres¡') //Mínimo 6 carácteres
-    .max(100, '!Description demasiado larga: maximo 6 caracteres¡') //Máximo 100 carácteres
+    .max(255, '!Description demasiado larga: maximo 100 caracteres¡') //Máximo 100 carácteres
     .required('!Se requiere una descripcion para la creacion de un nuevo libro¡'), //Requerido
   categoryId: Yup.string() //Id de categoría
     .min(1, 'La categoria es muy larga!')
