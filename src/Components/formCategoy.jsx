@@ -34,7 +34,7 @@ export default function FormCategory({category, setAlert}) {
         addCategory(data);
         setTimeout(() => {
         window.location.reload();
-        }, 5); 
+        }, 1000); 
       }
     } catch (error) {
       setAlert({

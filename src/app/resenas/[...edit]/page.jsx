@@ -2,13 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import axios from "axios";
-import endPoints from "../../../services/index";
 import useAlert from "../../../hooks/useAlert";
 import Alert from "../../../Components/alert";
 import FormResena from "app/Components/formResena";
 import { useUser } from '@auth0/nextjs-auth0/client';
-import NotAutoriced from "app/Components/notAutoriced";
+
+import { getOneReview } from "app/services/review.service";
 
 
 export default function Edit() {
@@ -18,16 +17,13 @@ export default function Edit() {
   const router = useRouter()
   const id = Array.isArray(params.edit) ? params.edit[1] : params.edit; 
   const { user, error, isLoading } = useUser();
-  //console.log('ID REVIEW: '+id)
 
- 
   useEffect(() => {
     if (!id) return;
     async function getReview() {
       try {
-        const response = await axios.get(endPoints.reviews.getReview(id));
-        setReview(response.data);
-        //console.log("AQUI ESTOY REVIEWS: "+review)
+        const response = await getOneReview(id);
+        setReview(response);
       } catch (error) {
         console.error(error);
         setAlert({

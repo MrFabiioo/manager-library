@@ -13,6 +13,7 @@ import { deleteReview} from '../../services/review.service'
 import FormResena from 'app/Components/formResena';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useRouter } from 'next/navigation';
+import { getAllReviews } from '../../services/review.service';
 
 
 export default function Resenas() {
@@ -24,8 +25,8 @@ export default function Resenas() {
   
   useEffect(()=>{
     async function getReviews() {
-      const response = await axios.get(endPoints.reviews.getAllReviews);
-      setReviews(response.data);
+      const response = await getAllReviews();
+      setReviews(response);
     }
     try {
       getReviews();

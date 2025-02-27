@@ -2,12 +2,10 @@
 import FormCategory from "app/Components/formCategoy";
 import { useParams,useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import endPoints from "app/services";
-import axios from "axios";
 import useAlert from "app/hooks/useAlert";
 import Alert from "app/Components/alert";
 import { useUser } from '@auth0/nextjs-auth0/client';
-import NotAutoriced from "app/Components/notAutoriced";
+import {getOneCategory} from "app/services/categories.service";
 
 export default function Edit(){
     const { alert, setAlert, toggleAlert } = useAlert(); // ✅ Agregar useAlert
@@ -21,8 +19,8 @@ export default function Edit(){
         if (!id) return;
         async function getCategory() {
           try {
-            const response = await axios.get(endPoints.categories.getCategory(id));
-            setCategory(response.data);
+            const response = await getOneCategory(id);
+            setCategory(response);
           } catch (error) {
             console.error(error);
             setAlert({

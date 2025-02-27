@@ -14,6 +14,7 @@ import FormCategory from 'app/Components/formCategoy';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import NotAutoriced from "app/Components/notAutoriced";
 import { useRouter } from 'next/navigation';
+import { getAllCategories } from 'app/services/categories.service';
 
 
 
@@ -27,8 +28,8 @@ export default function Categorias() {
 
   useEffect(()=>{
     async function getCategories() {
-      const response = await axios.get(endPoints.categories.getAllCategories);
-      setCategories(response.data);
+      const response = await getAllCategories();
+      setCategories(response);
     }
     try {
       getCategories();

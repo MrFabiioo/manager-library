@@ -14,6 +14,7 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { useRouter } from 'next/navigation';
 import  {getAllBooks}  from 'app/services/books.service';
 import NotAutoriced from 'app/Components/notAutoriced';
+import { getAllCategories } from 'app/services/categories.service';
 
 
 
@@ -41,8 +42,8 @@ export default function Libros(){
   
   useEffect(()=>{
     async function getCategories() {
-      const response = await axios.get(endPoints.categories.getAllCategories);
-      setCategories(response.data);
+      const response = await getAllCategories();
+      setCategories(response);
     }
     try {
       getCategories();

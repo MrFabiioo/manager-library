@@ -2,12 +2,11 @@
 import FormProduct from "../../../Components/formBook";
 import React, { useEffect, useState } from "react";
 import { useParams,useRouter } from "next/navigation";
-import axios from "axios";
-import endPoints from "../../../services/index";
 import useAlert from "../../../hooks/useAlert";
 import Alert from "../../../Components/alert";
 import { useUser } from '@auth0/nextjs-auth0/client';
-import NotAutoriced from "app/Components/notAutoriced";
+import {getAllCategories} from "app/services/categories.service";
+import {getOneBook} from "app/services/books.service";
 
 
 
@@ -24,8 +23,8 @@ export default function Edit() {
 
   useEffect(()=>{
     async function getCategories() {
-      const response = await axios.get(endPoints.categories.getAllCategories);
-      setCategories(response.data);
+      const response = await getAllCategories();
+      setCategories(response);
     }
     try {
       getCategories();
@@ -38,8 +37,9 @@ export default function Edit() {
     if (!id) return;
     async function getBook() {
       try {
-        const response = await axios.get(endPoints.books.getBook(id));
-        setBook(response.data);
+        const response = await getOneBook(id);
+        console.log("aqui esta lo que necesito: book: ",response)
+        setBook(response);
       } catch (error) {
         console.error(error);
         setAlert({
