@@ -12,6 +12,7 @@ import useAlert from '../../hooks/useAlert';
 import { deleteBook } from 'app/services/books.service';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useRouter } from 'next/navigation';
+import  {getAllBooks}  from 'app/services/books.service';
 import NotAutoriced from 'app/Components/notAutoriced';
 
 
@@ -26,15 +27,18 @@ export default function Libros(){
   
   useEffect(()=>{
     async function getBooks() {
-      const response = await axios.get(endPoints.books.getAllBooks);
-      setBooks(response.data);
+      const response = await getAllBooks();
+      setBooks(response);
     }
     try {
       getBooks();
+      
     } catch (error) {
       console.error(error);
     }
   },[])
+
+  
   useEffect(()=>{
     async function getCategories() {
       const response = await axios.get(endPoints.categories.getAllCategories);
