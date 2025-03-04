@@ -34,7 +34,6 @@ export default function Resenas() {
       console.error(error);
     }
   },[])
-  //console.log(endPoints.books.getAllBooks)
 
   const handleDelete = (id) => {
     deleteReview(id).then(()=>{window.location.reload();})

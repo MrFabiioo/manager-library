@@ -40,7 +40,6 @@ export default function Edit() {
     async function getBook() {
       try {
         const response = await getOneBook(id);
-        console.log("aqui esta lo que necesito: book: ",response)
         setBook(response);
       } catch (error) {
         console.error(error);

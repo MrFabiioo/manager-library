@@ -5,7 +5,6 @@ import axios from "axios";
 export default withApiAuthRequired (async function handler(req, res) {
   try {
     const { accessToken } = await getAccessToken(req, res); // Aquí sí está en un request scope
-    //console.log('aqui estoy token: '+accessToken + "final del token :D")
     const config = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -15,7 +14,6 @@ export default withApiAuthRequired (async function handler(req, res) {
     };
 
     const response = await axios.post(endPoints.categories.addCategory,req.body,config);
-    //console.log(response.data)
     res.status(200).json(response.data);
   } catch (error) {
     console.error(error);

@@ -15,7 +15,6 @@ export default withApiAuthRequired (async function handler(req, res) {
     };
 
     const response = await axios.post(endPoints.reviews.addReview,req.body,config);
-    //console.log(response.data)
     res.status(200).json(response.data);
   } catch (error) {
     console.error(error);
