@@ -82,7 +82,7 @@ export default function FormResena({review, id, setAlert}){
                 id="bannerImage"
                 autoComplete="bannerImage"
                 rows="3"
-                className="form-textarea mt-1 block w-full mt-1 focus:ring-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                className="form-textarea mt-1 block w-full mt-1 focus:ring-blue-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               />
             </div>
         <div className="relative mb-6">
@@ -109,7 +109,7 @@ export default function FormResena({review, id, setAlert}){
                 id="authorImage"
                 autoComplete="authorImage"
                 rows="3"
-                className="form-textarea mt-1 block w-full mt-1 focus:ring-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                className="form-textarea mt-1 block w-full mt-1 focus:ring-blue-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               />
             </div>
         <div className="relative mb-6">
@@ -138,7 +138,7 @@ export default function FormResena({review, id, setAlert}){
                 id="imageOne"
                 autoComplete="imageOne"
                 rows="3"
-                className="form-textarea mt-1 block w-full mt-1 focus:ring-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                className="form-textarea mt-1 block w-full mt-1 focus:ring-blue-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               />
             </div>
         <div className="relative mb-6">
@@ -167,7 +167,7 @@ export default function FormResena({review, id, setAlert}){
                 id="imageTwo"
                 autoComplete="imageTwo"
                 rows="3"
-                className="form-textarea mt-1 block w-full mt-1 focus:ring-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                className="form-textarea mt-1 block w-full mt-1 focus:ring-blue-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               />
             </div>
         <div className="relative mb-6">
@@ -196,7 +196,7 @@ export default function FormResena({review, id, setAlert}){
                 id="imageThree"
                 autoComplete="imageThree"
                 rows="3"
-                className="form-textarea mt-1 block w-full mt-1 focus:ring-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                className="form-textarea mt-1 block w-full mt-1 focus:ring-blue-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               />
             </div>
         <div className="relative mb-6">
@@ -215,7 +215,7 @@ export default function FormResena({review, id, setAlert}){
          </div>
         </div>
         </div>
-        <button className="w-full h-12 bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 rounded-full shadow-xs text-white text-base font-semibold leading-6">Guardar</button>
+        <button className="w-full h-12 bg-blue-700 hover:bg-blue-500 transition-all duration-700 rounded-full shadow-xs text-white text-base font-semibold leading-6">Guardar</button>
         </form>
     );
 };

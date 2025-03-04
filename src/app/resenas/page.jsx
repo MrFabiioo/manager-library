@@ -71,16 +71,16 @@ export default function Resenas() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="font-black px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       imagen | nombre reseña
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="font-black px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Nombre libro
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="font-black px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Autor
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="font-black px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Id
                     </th>
                     <th scope="col" className="relative px-6 py-3">
@@ -109,11 +109,11 @@ export default function Resenas() {
                         <div className="text-sm text-gray-900">{review.book.title}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-black-800">{review.book.author}</span>
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-200 text-black-800">{review.book.author}</span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{review.id}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`resenas/edit/${review.id}`} className="text-indigo-600 hover:text-indigo-900">
+                        <Link href={`resenas/edit/${review.id}`} className="text-blue-700 hover:text-blue-500 font-bold">
                           Editar 
                         </Link>
                       </td>

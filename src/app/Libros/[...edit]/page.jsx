@@ -7,6 +7,7 @@ import Alert from "../../../Components/alert";
 import { useUser } from '@auth0/nextjs-auth0/client';
 import {getAllCategories} from "app/services/categories.service";
 import {getOneBook} from "app/services/books.service";
+import NotAutoriced from "app/Components/notAutoriced";
 
 
 
@@ -22,6 +23,7 @@ export default function Edit() {
 
 
   useEffect(()=>{
+    if (!id) return;
     async function getCategories() {
       const response = await getAllCategories();
       setCategories(response);

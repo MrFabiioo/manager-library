@@ -16,7 +16,7 @@ export default function NavBar(){
     }
     if(user){
       fotito= user.picture
-      loguito="https://media.istockphoto.com/id/854608904/es/vector/estantes.jpg?s=612x612&w=0&k=20&c=fyPWN6Vz-fyB-94kSbXYJg9utk1nYrEvo86gMmjqqLI="
+      loguito="/images/creo.png"
     }else{
       fotito="https://avatar.iran.liara.run/public/1";
       loguito="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFGcgU5WdSMrj74djVjLTN6ML44iD1ujeG5g&s"
@@ -25,7 +25,7 @@ export default function NavBar(){
     return(
      
         <>
-        <nav className="bg-gray-800 z-50">
+        <nav className="bg-gray-900 z-50">
   <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div className="relative flex h-16 items-center justify-between">
       <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -45,16 +45,16 @@ export default function NavBar(){
       </div>
       <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div className="flex shrink-0 items-center">
-          <img className="h-8 w-auto" src={loguito} alt="Your Company"/>
+          <img className="h-8 w-auto rounded-xl" src={loguito} alt="Your Company"/>
         </div>
         <div className="hidden sm:ml-6 sm:block">
           <div className="flex space-x-4">
             
-            <a href="/dashboard" className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
-            <a href="/libros" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Libros</a>
-            <a href="/resenas" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Reseñas</a>
-            <a href="/categorias" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Categorias</a>
-            <a href="http://localhost:5173/" target="_blank" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Librería</a>
+            <a href="/dashboard" className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-blue-700" aria-current="page">Dashboard</a>
+            <a href="/libros" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Libros</a>
+            <a href="/resenas" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Reseñas</a>
+            <a href="/categorias" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Categorias</a>
+            <a href="http://localhost:5173/" target="_blank" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Librería</a>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ export default function Libros(){
   const [books,setBooks]=useState([]);
   const [categories,setCategories] = useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
-  const { user, error, isLoading } = useUser();
+  const { user, error, isLoading} = useUser();
   const router = useRouter();
   
   useEffect(()=>{
@@ -63,6 +63,7 @@ export default function Libros(){
   }
   
   if (error) return <div>{error.message}</div>;
+
   return (
   
     user &&(
@@ -79,7 +80,7 @@ export default function Libros(){
           <span className="sm:ml-3">
             <button
               type="button"
-              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-blue-700 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={() => setOpenModal(!openModal)}
             >
               <CheckIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
@@ -96,16 +97,16 @@ export default function Libros(){
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs text-gray-500 uppercase tracking-wider font-black">
                     imagen | nombre 
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-black text-gray-500 uppercase tracking-wider">
                       Categoria
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-black text-gray-500 uppercase tracking-wider">
                       Autor
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-black text-gray-500 uppercase tracking-wider">
                       Id
                     </th>
                     <th scope="col" className="relative px-6 py-3">
@@ -134,16 +135,20 @@ export default function Libros(){
                         <div className="text-sm text-gray-900">{book.category.name}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-black-800">{book.author}</span>
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-200 text-black-800">{book.author}</span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{book.id}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`resenas/agregar/id/${book.id}`} className="text-indigo-600 hover:text-indigo-900">
-                          Agregar Reseña 
-                        </Link>
-                      </td>
+                          {!book.review ? (
+                            <Link href={`resenas/agregar/id/${book.id}`} className="text-blue-700 hover:text-gray-500 font-bold">
+                              Agregar Reseña
+                            </Link>
+                          ) : (
+                            <span className="text-gray-400 font-bold">Ya tiene una reseña</span>
+                          )}
+                        </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link href={`libros/edit/${book.id}`} className="text-indigo-600 hover:text-indigo-900">
+                        <Link href={`libros/edit/${book.id}`} className="text-blue-700 hover:text-gray-500 font-bold">
                           Editar 
                         </Link>
                       </td>
