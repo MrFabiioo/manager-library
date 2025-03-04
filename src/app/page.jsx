@@ -16,9 +16,8 @@ const navigation = [
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { user, error, isLoading } = useUser();
+  const { user, isLoading } = useUser();
   const router = useRouter()
-  //if(isLoading) return null;
   useEffect(() => {
     if (user) {
       router.push('/libros');

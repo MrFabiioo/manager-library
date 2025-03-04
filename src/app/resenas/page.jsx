@@ -3,10 +3,7 @@
 import { CheckIcon,XCircleIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useEffect, useState } from "react";
-import endPoints from "../../services/index";
-import axios from "axios";
 import Modal from "../../Components/modal";
-import FormBook from 'app/Components/formBook';
 import Alert from 'app/Components/alert';
 import useAlert from '../../hooks/useAlert';
 import { deleteReview} from '../../services/review.service'
@@ -20,7 +17,7 @@ export default function Resenas() {
   const [openModal,setOpenModal]= useState(false);
   const [reviews,setReviews]=useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
-  const { user, error, isLoading } = useUser();
+  const { user, isLoading } = useUser();
   const router = useRouter()
   
   useEffect(()=>{

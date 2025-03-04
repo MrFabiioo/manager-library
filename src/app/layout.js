@@ -1,8 +1,6 @@
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Nav from "app/Components/nav";
-import NavBar from "app/Components/navbar";
 import Footer from "app/Components/footer";
 import {UserProvider} from "@auth0/nextjs-auth0/client"
 import CondicionalNavBar from "app/Components/condicionalNavBar";

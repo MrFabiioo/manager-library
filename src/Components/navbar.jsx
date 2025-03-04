@@ -1,14 +1,11 @@
 "use client"
 import { useState } from "react";
 import { useUser } from '@auth0/nextjs-auth0/client';
-//import NotAutoriced from "./notAutoriced";
 
 export default function NavBar(){
     const [open,setOpen]= useState(false);
    const { user, error, isLoading } = useUser();
-   // if (!user) return <NotAutoriced/>
-   // if (isLoading) return <div>Loading...</div>;
-    //if (error) return <div>{error.message}</div>;
+
     let fotito="";
     let loguito=""
     if (isLoading) {

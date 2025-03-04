@@ -3,16 +3,12 @@
 import { CheckIcon,XCircleIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useEffect, useState } from "react";
-import endPoints from "../../services/index";
-import axios from "axios";
 import Modal from "../../Components/modal";
-import FormBook from 'app/Components/formBook';
 import Alert from 'app/Components/alert';
 import useAlert from '../../hooks/useAlert';
 import { deleteCategory } from 'app/services/categories.service';
 import FormCategory from 'app/Components/formCategoy';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import NotAutoriced from "app/Components/notAutoriced";
 import { useRouter } from 'next/navigation';
 import { getAllCategories } from 'app/services/categories.service';
 
@@ -22,7 +18,7 @@ export default function Categorias() {
     const [openModal,setOpenModal]= useState(false);
     const [categories,setCategories] = useState([]);
     const { alert, setAlert, toggleAlert } = useAlert();
-    const { user, error, isLoading } = useUser();
+    const { user, isLoading } = useUser();
     const router =  useRouter()
 
 

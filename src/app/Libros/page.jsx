@@ -3,8 +3,6 @@
 import { CheckIcon,XCircleIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useEffect, useState } from "react";
-import endPoints from "../../services/index";
-import axios from "axios";
 import Modal from "../../Components/modal";
 import FormBook from 'app/Components/formBook';
 import Alert from 'app/Components/alert';
@@ -13,7 +11,6 @@ import { deleteBook } from 'app/services/books.service';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useRouter } from 'next/navigation';
 import  {getAllBooks}  from 'app/services/books.service';
-import NotAutoriced from 'app/Components/notAutoriced';
 import { getAllCategories } from 'app/services/categories.service';
 
 

@@ -1,12 +1,10 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import useAlert from "../../../hooks/useAlert";
 import Alert from "../../../Components/alert";
 import FormResena from "app/Components/formResena";
 import { useUser } from '@auth0/nextjs-auth0/client';
-
 import { getOneReview } from "app/services/review.service";
 
 
@@ -16,7 +14,7 @@ export default function Edit() {
   const params = useParams(); 
   const router = useRouter()
   const id = Array.isArray(params.edit) ? params.edit[1] : params.edit; 
-  const { user, error, isLoading } = useUser();
+  const { user, isLoading } = useUser();
 
   useEffect(() => {
     if (!id) return;
