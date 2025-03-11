@@ -13,7 +13,7 @@ export default function NavBar(){
     }
     if(user){
       fotito= user.picture
-      loguito="/images/creo.png"
+      loguito="/images/Creo.png"
     }else{
       fotito="https://avatar.iran.liara.run/public/1";
       loguito="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFGcgU5WdSMrj74djVjLTN6ML44iD1ujeG5g&s"
