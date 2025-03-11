@@ -126,7 +126,7 @@ export default function Home() {
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
               El codigo de este proyecto esta en GitHub.{' '}
-              <a href="#" className="font-semibold text-blue-600">
+              <a href="https://github.com/MrFabiioo/manager-library" className="font-semibold text-blue-600">
                 <span aria-hidden="true" className="absolute inset-0" />
                 Leer mas <span aria-hidden="true">&rarr;</span>
               </a>
@@ -141,13 +141,13 @@ export default function Home() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="#"
+                href="https://github.com/MrFabiioo/biblioteca-personal"
                 className="rounded-md bg-blue-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Frontend
               </a>
               <a
-                href="#"
+                href="https://github.com/MrFabiioo/backend-bliblioteca-personal"
                 className="rounded-md bg-blue-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Backend

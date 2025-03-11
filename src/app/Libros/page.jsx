@@ -48,7 +48,7 @@ export default function Libros(){
       console.error(error);
     }
   },[])
-
+  
   const handleDelete = (id) => {
     deleteBook(id).then(()=>{window.location.reload();})
   };
