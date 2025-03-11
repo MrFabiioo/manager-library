@@ -5,7 +5,8 @@ const useAlert = (options) => {
     active: false,
     message: '',
     type: '',
-    autoClose: true,
+    book:"",
+    autoClose: false,
   };
   const [alert, setAlert] = useState({
     ...defaultOptions,

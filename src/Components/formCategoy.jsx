@@ -1,42 +1,40 @@
+"use client"
 import { useRef } from 'react';
-import { ValidationSchema } from '../Schema/validationSchema';
-import { addBook,updateBook } from 'app/services/books.service';
+import {  validationSchemaCategory } from '../Schema/validationSchema';
+import { addCategory,updateCategory } from 'app/services/categories.service';
 import { useRouter } from 'next/navigation';
 
-export default function FormBook({categories, book, estado,cambiarEstado, setAlert }) {
-  const formRef = useRef(null);
-  const router = useRouter();
-  const handleSubmit = async(event)=>{
-    event.preventDefault();
-    const formData = new FormData(formRef.current)
-    const data ={
-      title: formData.get('title'),
-      author: formData.get('author'),
-      categoryId:formData.get('categoryId'),
-      description:formData.get('description'),
-      image:formData.get('image')
-    };
+
+export default function FormCategory({category, setAlert}) {
+    const formRef = useRef(null);
+    const router = useRouter();
+    const handleSubmit = async(event)=>{
+        event.preventDefault();
+        const formData = new FormData(formRef.current)
+        const data = {
+            name: formData.get('name'),
+            description: formData.get('description'),
+            image:formData.get('image')
+        };
     try {
-      const valid = await ValidationSchema.validate(data);
-      if (book) {
-        updateBook(book?.id,data);
+      const valid = await validationSchemaCategory.validate(data)
+      if (category) {
+        updateCategory(category?.id,data);
         setAlert({
           active: true,
-          message: `El siguiente libro ah sido actualizado: `,
+          message: `La siguiente categoria ah sido actualizada: `,
           type: 'error',
-          book:`${book.title}`,
+          book:`${category?.name}`,
           autoClose: false,
         });
         setTimeout(() => {
-          router.push('/libros');
+          router.push('/categorias');
         }, 4000);
-        
       } else {
-        addBook(data);
-        cambiarEstado(!estado);
+        addCategory(data);
         setTimeout(() => {
-          window.location.reload();
-        }, 2000);   
+        window.location.reload();
+        }, 1000); 
       }
     } catch (error) {
       setAlert({
@@ -45,11 +43,9 @@ export default function FormBook({categories, book, estado,cambiarEstado, setAle
         type: 'error',
         autoClose: true,
       })
-    }  
-  }
-
+    }
+    }
   return (
-  
     <form ref={formRef} onSubmit={handleSubmit} className='w-full '>
       <div className="overflow-hidden rounded-2xl ">
         <div className="px-4 py-5 bg-white sm:p-6 ">
@@ -59,50 +55,19 @@ export default function FormBook({categories, book, estado,cambiarEstado, setAle
                 Nombre
               </label>
               <input
-                defaultValue={book?.title}
+                defaultValue={category?.name}
                 type="text"
-                name="title"
-                id="title"
+                name="name"
+                id="name"
                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               />
             </div>
-            <div className="col-span-6 sm:col-span-6">
-              <label htmlFor="price" className="block text-sm font-medium text-gray-700">
-                Autor
-              </label>
-              <input
-                defaultValue={book?.author}
-                type="text"
-                name="author"
-                id="author"
-                className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-              />
-            </div>
-            <div className="col-span-6">
-              <label htmlFor="category" className="block text-sm font-medium text-gray-700">
-                Categoria
-              </label>
-              <select
-                defaultValue={book?.categoryId}
-                id="categoryId"
-                name="categoryId"
-                autoComplete="category-name"
-                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              >
-                {categories?.map((category)=>(
-                  <option key={category.id} value={category.id}>{category.name}</option>
-                  
-                ))}
-                
-              </select>
-            </div>
-
             <div className="col-span-6">
               <label htmlFor="description" className="block text-sm font-medium text-gray-700">
                 Descripcion
               </label>
               <textarea
-                defaultValue={book?.description}
+                defaultValue={category?.description}
                 name="description"
                 id="description"
                 autoComplete="description"
@@ -115,7 +80,7 @@ export default function FormBook({categories, book, estado,cambiarEstado, setAle
                 Imagen
               </label>
               <textarea
-                defaultValue={book?.image}
+                defaultValue={category?.image}
                 name="image"
                 id="image"
                 autoComplete="image"

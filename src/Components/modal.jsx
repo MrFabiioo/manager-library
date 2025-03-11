@@ -1,9 +1,7 @@
 import { Fragment} from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { XCircleIcon } from '@heroicons/react/solid';
 
 export default function Modal({estado,cambiarEstado,children}) {
-console.log("aqui estoy modeal")
   return (
     <>
       {estado && 
@@ -37,7 +35,7 @@ console.log("aqui estoy modeal")
                     as="h3"
                     className="text-2xl font-bold leading-6 text-gray-900 text-center"
                   >
-                    Formulario de agregar libros
+                    Formulario 
                   </Dialog.Title>
                   <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">{children}</div>
@@ -46,7 +44,7 @@ console.log("aqui estoy modeal")
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-200 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={()=>{cambiarEstado(!estado)}}
                     >
                       Cerrar
