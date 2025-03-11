@@ -9,8 +9,7 @@ export default function Footer(){
     return(
             <footer className="bg-gray-900">
                 <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-                <span className="text-sm text-gray-300 sm:text-center dark:text-gray-300">© 2025 <a href="https://flowbite.com/" className="hover:underline">Fabio Ortega</a>. Todos los derechos reservados.
-                </span>
+                <span className="text-sm text-gray-300 sm:text-center ">© 2025 Fabio Ortega Todos los derechos reservados.</span>
                 <ul className="flex flex-wrap gap-2 items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-700 sm:mt-0">
                     <li >
                         <a  href="/libros/" className="hover:underline me-4 md:me-6 flex text-gray-300 "><FaHome /></a>
