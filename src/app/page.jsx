@@ -33,7 +33,7 @@ export default function Home() {
               <span className="sr-only">Your Company</span>
               <Image
                 alt="imagen" width={100} height={50} 
-                src="/images/creo.png"
+                src="/images/Creo.png"
                 className="h-8 w-auto rounded-xl"
               />
             </a>
