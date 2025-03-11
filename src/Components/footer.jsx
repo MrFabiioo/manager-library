@@ -10,7 +10,7 @@ export default function Footer(){
             <footer className="bg-gray-900">
                 <div className="mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
                 <span className="text-sm text-white sm:text-center ">© 2025 Fabio Ortega Todos los derechos reservados.</span>
-                <ul className="flex flex-wrap gap-2 items-center mt-3 text-sm font-medium text-white dark:text-gray-700 sm:mt-0">
+                <ul className="flex gap-6 items-center mt-3 text-sm font-medium text-white dark:text-gray-700 sm:mt-0">
                     <li >
                         <a  href="/libros/" className="hover:underline me-4 md:me-6 flex text-white "><FaHome /></a>
                     </li>

@@ -20,7 +20,7 @@ export default function Home() {
   const router = useRouter()
   useEffect(() => {
     if (user) {
-      router.push('/libros');
+      router.push('/Libros');
     }
   }, [user, router]); // Se ejecuta solo cuando `user` cambia
   if (isLoading) return null;

@@ -51,7 +51,7 @@ export default function NavBar(){
             <a href="/libros" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Libros</a>
             <a href="/resenas" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Reseñas</a>
             <a href="/categorias" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Categorias</a>
-            <a href="http://localhost:5173/" target="_blank" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Librería</a>
+            <a href="https://biblioteca-personal.vercel.app" target="_blank" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Librería</a>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default function NavBar(){
     </div>
   </div>
 
-  <div className="sm:hidden" id="mobile-menu">
+  <div className="hidden" id="mobile-menu">
     <div className="space-y-1 px-2 pt-2 pb-3">
       <a href="#" className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
       <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
