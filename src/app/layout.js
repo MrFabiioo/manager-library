@@ -14,14 +14,14 @@ export default function RootLayout({ children }) {
   return (
     <UserProvider>
       <link rel="icon" href="/images/Creo.png" />
-      <html className="h-full">
-        <body className="h-full">
+      <html>
+        <body>
           <CondicionalNavBar>
             <main>
               <div className="max-w-7xl mx-auto py-6 sm:px-6">{children}</div>
             </main>
           </CondicionalNavBar>
-          <Footer />
+          <Footer/>
         </body>
       </html>
     </UserProvider>
