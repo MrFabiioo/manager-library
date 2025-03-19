@@ -4,7 +4,8 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 
 export default function NavBar(){
     const [open,setOpen]= useState(false);
-   const { user, error, isLoading } = useUser();
+   const { user,isLoading } = useUser();
+   const [openHamburguerMenu,setOpenHamburguerMenu] = useState(false)
 
     let fotito="";
     let loguito=""
@@ -22,12 +23,12 @@ export default function NavBar(){
     return(
      
         <>
-        <nav className="bg-gray-900 z-50 fixed w-full">
+        <nav className="bg-gray-900 z-50 relative w-full ">
   <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div className="relative flex h-16 items-center justify-between">
       <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
         
-        <button type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
+        <button onClick={()=>{setOpenHamburguerMenu(!openHamburguerMenu)}} type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
           <span className="absolute -inset-0.5"></span>
           <span className="sr-only">Open main menu</span>
 
@@ -88,7 +89,9 @@ export default function NavBar(){
     </div>
   </div>
 
-  <div className="sm:hidden" id="mobile-menu">
+  {
+    openHamburguerMenu &&
+    <div className="sm:hidden" id="mobile-menu">
     <div className="space-y-1 px-2 pt-2 pb-3">
       <a href="https://biblioteca-personal.vercel.app" className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Biblioteca</a>
       <a href="/Libros" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Libros</a>
@@ -96,6 +99,7 @@ export default function NavBar(){
       <a href="/resenas" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Reseñas</a>
     </div>
   </div>
+  }
 </nav>
 </>
     );
