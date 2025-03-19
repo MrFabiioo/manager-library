@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "app/Components/footer";
 import {UserProvider} from "@auth0/nextjs-auth0/client"
 import CondicionalNavBar from "app/Components/condicionalNavBar";
+import Head from "next/head";
 
 
 export const metadata = {
@@ -13,7 +14,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <UserProvider>
-      <link rel="icon" href="/images/Creo.png" />
+      <Head>
+        <link rel="icon" href="/images/Creo.png" />
+      </Head>
       <html>
         <body>
           <CondicionalNavBar>

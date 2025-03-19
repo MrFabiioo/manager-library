@@ -43,7 +43,7 @@ export default function FormResena({review, id, setAlert}){
       } else {
         addReview(data);
         setTimeout(() => {
-          router.push('/libros');
+          router.push('/Libros');
         }, 2000);  
 
       }

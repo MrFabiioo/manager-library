@@ -48,7 +48,7 @@ export default function NavBar(){
           <div className="flex space-x-4">
             
             <a href="/dashboard" className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-blue-700" aria-current="page">Dashboard</a>
-            <a href="/libros" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Libros</a>
+            <a href="/Libros" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Libros</a>
             <a href="/resenas" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Reseñas</a>
             <a href="/categorias" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Categorias</a>
             <a href="https://biblioteca-personal.vercel.app" target="_blank" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">Librería</a>

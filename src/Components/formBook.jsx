@@ -28,7 +28,7 @@ export default function FormBook({categories, book, estado,cambiarEstado, setAle
           autoClose: false,
         });
         setTimeout(() => {
-          router.push('/libros');
+          router.push('/Libros');
         }, 4000);
         
       } else {
