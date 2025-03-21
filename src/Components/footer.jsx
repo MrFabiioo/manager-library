@@ -7,7 +7,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 export default function Footer(){
     const {user}=useUser();
     return(
-            <footer className="w-full bg-gray-900 fixed bottom-0">
+            <footer className="bg-gray-900 mt-auto">
                 <div className="mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
                 <span className="text-sm text-white sm:text-center ">© 2025 Fabio Ortega Todos los derechos reservados.</span>
                 <ul className="flex gap-6 items-center mt-3 text-sm font-medium text-white dark:text-gray-700 sm:mt-0">

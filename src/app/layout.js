@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/images/Creo.png" />
       </Head>
       <html>
-        <body>
+        <body className='flex flex-col min-h-screen'>
           <CondicionalNavBar>
             <main>
               <div className="max-w-7xl mx-auto py-6 sm:px-6">{children}</div>
